@@ -14,7 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['prefix'=>'admin','namespace'=>'Admin'],function (){
+Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],function (){
     Route::get('dashboard','DashboardController@dashboard')->name('admin.dashboard');
     Route::get('about','DashboardController@about')->name('admin.about');
 });
+
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'reset' => false, // Password Reset Routes...
+    'verify' => false, // Email Verification Routes...
+]);
