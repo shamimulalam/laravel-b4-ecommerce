@@ -21,10 +21,11 @@
             <div class="panel panel-primary">
                 <div class="panel-heading"><h3 class="panel-title">Admin Form</h3></div>
                 <div class="panel-body">
-                    <form action="{{ route('user.store') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('user.update',$user->id) }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('put')
                         @include('admin.user._form')
-                        <button class="btn btn-info pull-right" type="submit">Save</button>
+                        <button class="btn btn-info pull-right" type="submit">Update</button>
                     </form>
                 </div> <!-- panel-body -->
             </div> <!-- panel -->
