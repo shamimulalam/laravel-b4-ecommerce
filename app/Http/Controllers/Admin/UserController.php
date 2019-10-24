@@ -48,13 +48,13 @@ class UserController extends Controller
         $data = $request->except(['_token','password','image']);
         $data['password'] = bcrypt($request->password);
 
-        if($request->hasFile('image'))
-        {
-            $file = $request->file('image');
-            $path = 'image/user';
-            $file->move($path,$file->getClientOriginalName());
-            $data['image'] = $path.'/'.$file->getClientOriginalName();
-        }
+            if($request->hasFile('image'))
+            {
+                $file = $request->file('image');
+                $path = 'image/user';
+                $file->move($path,$file->getClientOriginalName());
+                $data['image'] = $path.'/'.$file->getClientOriginalName();
+            }
 
         User::create($data);
         session()->flash('message','Admin created successfully');
