@@ -24,6 +24,7 @@
                     <form action="{{ route('vendor.store') }}" class="form-horizontal" method="post" >
                         @csrf
                         @include('admin.vendor._form')
+
                         <button class="btn btn-info pull-right" type="submit">Save</button>
                     </form>
                 </div> <!-- panel-body -->

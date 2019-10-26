@@ -100,7 +100,7 @@ class VendorController extends Controller
     public function destroy(Vendor $vendor)
     {
         Vendor::destroy($vendor->id);
-        session()->flash('message','Admin deleted successfully');
+        session()->flash('message','Vendor deleted successfully');
         return redirect()->back();
     }
 }

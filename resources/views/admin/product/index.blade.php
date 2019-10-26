@@ -33,6 +33,7 @@
                                         <th>Category</th>
                                         <th>Unit Price</th>
                                         <th>Stock</th>
+                                        <th>Images</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
@@ -44,6 +45,7 @@
                                                 <td>{{ $product->category->name }}</td>
                                                 <td>{{ $product->unit_price }}</td>
                                                 <td>{{ $product->stock }}</td>
+                                                <td><a class="btn btn-info" href="{{ route('product.images',$product->id) }}">Images</a></td>
                                                 <td>
                                                     <a class="btn btn-info" href="{{ route('product.edit',$product->id) }}">Edit</a>
                                                     <form class="d-inline-block" method="post" action="{{ route('product.destroy',$product->id) }}">
@@ -51,6 +53,7 @@
                                                         @method('delete')
                                                         <button class="btn btn-danger" onclick="return confirm('Are you confirm to delete?')">Delete</button>
                                                     </form>
+
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -4,7 +4,7 @@
         <select name="category_id" class="form-control">
             <option value="">Select Category</option>
             @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{$category->name}}</option>
+                <option @if(old('category_id',isset($product->category_id)?$product->category_id:null) == $category->id) selected @endif value="{{ $category->id }}">{{$category->name}}</option>
             @endforeach
         </select>
         @error('category_id')
@@ -18,7 +18,7 @@
         <select name="vendor_id" class="form-control">
             <option value="">Select Vendor</option>
             @foreach($vendors as $vendor)
-                <option value="{{ $vendor->id }}">{{$vendor->name}}</option>
+                <option @if(old('vendor_id',isset($product->vendor_id)?$product->vendor_id:null) == $vendor->id) selected @endif value="{{ $vendor->id }}">{{$vendor->name}}</option>
             @endforeach
         </select>
         @error('vendor_id')
@@ -75,21 +75,23 @@
     <label class="col-sm-2 control-label">Product Status</label>
     <div class="col-sm-10">
         <select name="status" class="form-control">
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+            <option  @if(old('status',isset($product->status)?$product->status:null) == 'active') selected @endif value="active">Active</option>
+            <option  @if(old('status',isset($product->status)?$product->status:null) == 'inactive') selected @endif value="inactive">Inactive</option>
         </select>
     </div>
 </div>
 
-<div class="form-group">
-    <label class="col-md-2 control-label">Image</label>
-    <div class="col-md-10">
-        <input type="file" class="form-control" multiple name="image[]">
-        @error('image')
-        <div class="text-danger">{{ $message }}</div>
-        @enderror
-        @if(isset($product) && $product->image != null)
-            <img src="{{ asset($product->image) }}" width="20%">
-        @endif
+@if(!isset($product))
+    <div class="form-group">
+        <label class="col-md-2 control-label">Image</label>
+        <div class="col-md-10">
+            <input type="file" class="form-control" multiple name="image[]">
+            @error('image')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
-</div>
+@endif
+
+
+

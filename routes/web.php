@@ -21,6 +21,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
     Route::resource('vendor','VendorController');
     Route::resource('category','CategoryController');
     Route::resource('product','ProductController');
+    Route::get('product/images/{productId}','ProductController@pictures')->name('product.images');
+    Route::put('product/image/update/{imageId}','ProductController@updateImage')->name('product.image.update');
+    Route::delete('product/image/destroy/{imageId}','ProductController@destroyImage')->name('product.image.destroy');
 });
 
 Auth::routes([
