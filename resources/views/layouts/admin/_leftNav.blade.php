@@ -25,7 +25,29 @@
                     <li><a href="{{ route('user.create') }}">Create new User</a></li>
                 </ul>
             </li>
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect"><i class="ti-agenda"></i> <span> Categories </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                <ul class="list-unstyled">
+                    <li><a href="{{ route('category.index') }}">Category List</a></li>
+                    <li><a href="{{ route('category.create') }}">Add Category</a></li>
+                </ul>
+            </li>
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect"><i class="ti-agenda"></i> <span> Vendors </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                <ul class="list-unstyled">
+                    <li><a href="{{ route('vendor.index') }}">Vendors List</a></li>
+                    <li><a href="{{ route('vendor.create') }}">Add Vendor</a></li>
+                </ul>
+            </li>
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect"><i class="ti-agenda"></i> <span> Products </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                <ul class="list-unstyled">
+                    <li><a href="{{ route('product.index') }}">Products List</a></li>
+                    <li><a href="{{ route('product.create') }}">Add a Product </a></li>
+                </ul>
+            </li>
         </ul>
     </div>
+
     <div class="clearfix"></div>
 </div> <!-- end sidebarinner -->
