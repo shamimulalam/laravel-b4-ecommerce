@@ -25,6 +25,22 @@
                     <li><a href="{{ route('user.create') }}">Create new User</a></li>
                 </ul>
             </li>
+
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-bag"></i> <span> Product </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                <ul class="list-unstyled">
+                    <li><a href="{{ route('product.create') }}">Add New Product</a></li>
+                    <li><a href="{{ route('product.index') }}">Product List</a></li>
+                </ul>
+            </li>
+
+            <li class="has_sub">
+                <a href="javascript:void(0);" class="waves-effect"><i class="ti-write"></i><span> Category </span><span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                <ul class="list-unstyled">
+                    <li><a href="{{ route('category.create') }}">Category Create</a></li>
+                    <li><a href="{{ route('category.index') }}">Category list</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <div class="clearfix"></div>
