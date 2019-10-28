@@ -9,7 +9,7 @@ class Product extends Model
     const ACTIVE_STATUS = 'active';
     const INACTIVE_STATUS = 'inactive';
 
-    protected $fillable = ['name','category_id','vendor_id','description','unit_price','stock','brand','status'];
+    protected $fillable = ['name','category_id','vendor_id','description','unit_price','stock','brand','status','is_featured'];
     public function category(){
         return $this->belongsTo(Category::class);
     }

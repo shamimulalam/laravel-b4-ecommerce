@@ -81,6 +81,21 @@
     </div>
 </div>
 
+<div class="form-group">
+    <label class="col-sm-2 control-label">Featured</label>
+    <div class="col-sm-10">
+        <label class="form-check-label">
+            <input @if(old('is_featured',isset($product->is_featured)?$product->is_featured:null) == 1) checked @endif value="1" type="radio" class="form-radio-input" name="is_featured" id="is_featured">
+            Yes
+            <input @if(old('is_featured',isset($product->is_featured)?$product->is_featured:null) == 0) checked @endif value="0" type="radio" class="form-radio-input" name="is_featured" id="is_featured">
+            No
+        </label>
+        @error('image')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+</div>
+
 @if(!isset($product))
     <div class="form-group">
         <label class="col-md-2 control-label">Image</label>
