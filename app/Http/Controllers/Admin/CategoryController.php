@@ -15,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $data['categories'] = Category::orderBy('id','desc')->paginate(4);
+        return view('admin.category.index',$data);
     }
 
     /**
@@ -25,7 +26,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -36,7 +37,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'status' => 'required|in:'.Category::ACTIVE_STATUS.','.Category::INACTIVE_STATUS,
+        ]);
+
+        Category::create($request->all());
+        session()->flash('message','category created successfully!');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -58,7 +67,8 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        $data['category'] = $category;
+        return view('admin.category.edit',$data);
     }
 
     /**
@@ -70,7 +80,15 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'status' => 'required|in:'.Category::ACTIVE_STATUS.','.Category::INACTIVE_STATUS,
+        ]);
+
+        $category->update($request->all());
+        session()->flash('message','category Update successfully!');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -81,6 +99,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        session()->flash('message','category created successfully!');
+        return redirect()->route('category.index');
     }
 }

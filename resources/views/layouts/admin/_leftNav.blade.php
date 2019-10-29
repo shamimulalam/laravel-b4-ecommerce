@@ -40,10 +40,10 @@
                 </ul>
             </li>
             <li class="has_sub">
-                <a href="javascript:void(0);" class="waves-effect"><i class="ti-agenda"></i> <span> Products </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
+                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-shopping-bag"></i> <span> Product </span> <span class="pull-right"><i class="mdi mdi-plus"></i></span></a>
                 <ul class="list-unstyled">
-                    <li><a href="{{ route('product.index') }}">Products List</a></li>
-                    <li><a href="{{ route('product.create') }}">Add a Product </a></li>
+                    <li><a href="{{ route('product.create') }}">Add New Product</a></li>
+                    <li><a href="{{ route('product.index') }}">Product List</a></li>
                 </ul>
             </li>
         </ul>
