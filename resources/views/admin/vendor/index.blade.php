@@ -1,5 +1,5 @@
 @extends('layouts.admin.master')
-@section('title','List of admin')
+@section('title','List of vendors')
 @section('content')
     <!-- Page-Title -->
     <div class="row">
@@ -19,7 +19,7 @@
             @include('layouts.admin._message')
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Product list</h3>
+                    <h3 class="panel-title">All Vendors</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -30,37 +30,34 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Category</th>
-                                        <th>Unit Price</th>
-                                        <th>Stock</th>
-                                        <th>Images</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Status</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($products as $id=>$product)
+                                        @foreach($vendors as $id=>$vendor)
                                             <tr>
                                                 <td>{{ ++$id }}</td>
-                                                <td>{{ $product->name }}</td>
-                                                <td>{{ $product->category->name }}</td>
-                                                <td>{{ $product->unit_price }}</td>
-                                                <td>{{ $product->stock }}</td>
-                                                <td><a class="btn btn-info" href="{{ route('product.images',$product->id) }}">Images</a></td>
+                                                <td>{{ $vendor->name }}</td>
+                                                <td>{{ $vendor->email }}</td>
+                                                <td>{{ $vendor->address }}</td>
+                                                <td>{{ $vendor->status }}</td>
                                                 <td>
-                                                    <a class="btn btn-info" href="{{ route('product.edit',$product->id) }}">Edit</a>
-                                                    <form class="d-inline-block" method="post" action="{{ route('product.destroy',$product->id) }}">
+                                                    <a class="btn btn-info" href="{{ route('vendor.edit',$vendor->id) }}">Edit</a>
+                                                    <form class="d-inline-block" method="post" action="{{ route('vendor.destroy',$vendor->id) }}">
                                                         @csrf
                                                         @method('delete')
                                                         <button class="btn btn-danger" onclick="return confirm('Are you confirm to delete?')">Delete</button>
                                                     </form>
-
                                                 </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                                 <div class="text-center">
-                                    {{ $products->render() }}
+                                    {{ $vendors->render() }}
                                 </div>
                             </div>
                         </div>

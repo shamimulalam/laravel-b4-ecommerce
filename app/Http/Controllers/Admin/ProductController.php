@@ -99,7 +99,11 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $data['categories'] = Category::all();
+        $data['vendors'] = Vendor::all();
+        $data['product'] = $product;
+        $data['product_images'] = ProductImage::where('product_id',$product->id)->get();
+        return view('admin.product.edit',$data);
     }
 
     /**
@@ -112,6 +116,31 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+
+        $request->validate([
+            'category_id' => 'required',
+            'vendor_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'unit_price' => 'required',
+            'stock' => 'required|int',
+            'status' => 'required|in:'.Product::ACTIVE_STATUS.','.Product::INACTIVE_STATUS,
+        ]);
+
+        DB::beginTransaction();
+        try{
+            $product->update($request->except(['_token']));
+
+            DB::commit();
+        }catch (\Exception $exception){
+
+            DB::rollBack();
+            Log::error($exception->getMessage());
+        }
+
+        session()->flash('message','Product Updated successfully');
+        return redirect()->route('product.index');
+
     }
 
     /**
@@ -122,6 +151,58 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $images = ProductImage::where('product_id',$product->id)->get();
+        foreach ($images as $image){
+            if(file_exists($image->image))
+            {
+                unlink($image->image);
+            }
+            $image->destroy($image->id);
+        }
+        Product::destroy($product->id);
+        session()->flash('message','Product deleted successfully');
+        return redirect()->back();
+    }
+
+    // displaying all product images
+    public function pictures($product_id){
+        $data['images'] = ProductImage::where('product_id',$product_id)->get();
+        return view('admin.product.images',$data);
+    }
+
+    //upddating a single product image
+    public  function updateImage(Request $request, $imageId){
+        $request->validate([
+            'image' => 'required',
+           // 'image' => 'mimes:jpeg,png',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $old = ProductImage::findOrFail($imageId);
+            if(file_exists($old->image))
+            {
+                unlink($old->image);
+            }
+            $data['id'] = $imageId;
+            $file = $request->file('image');
+            $path = 'image/product';
+            $file->move($path,$file->getClientOriginalName());
+            $data['image'] = $path.'/'.$file->getClientOriginalName();
+            $old->update($data);
+            session()->flash('message','Image Updated successfully');
+            return redirect()->back();
+        }
+
+    }
+    //deleting a single product image
+    public function destroyImage($imageId){
+        $image = ProductImage::findOrFail($imageId);
+        if(file_exists($image->image))
+        {
+            unlink($image->image);
+        }
+        $image->destroy($image->id);
+        session()->flash('message','Image deleted successfully');
+        return redirect()->back();
     }
 }
