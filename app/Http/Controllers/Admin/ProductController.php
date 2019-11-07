@@ -166,15 +166,20 @@ class ProductController extends Controller
 
     // displaying all product images
     public function pictures($product_id){
+        $data['product_id']=$product_id;
         $data['images'] = ProductImage::where('product_id',$product_id)->get();
         return view('admin.product.images',$data);
     }
+    public function ins_p_img($productId){
+        $data['product_id']=$productId;
+        return view('admin.product.imageAdd',$data);
 
+    }
     //upddating a single product image
     public  function updateImage(Request $request, $imageId){
         $request->validate([
-            'image' => 'required',
-           // 'image' => 'mimes:jpeg,png',
+//            'image' => '',
+            'image' => 'required|mimes:jpeg,png',
         ]);
 
         if ($request->hasFile('image')) {

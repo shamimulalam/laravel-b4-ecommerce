@@ -20,6 +20,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
     Route::resource('category','CategoryController');
     Route::resource('product','ProductController');
     Route::get('product/images/{productId}','ProductController@pictures')->name('product.images');
+    Route::get('product/ins_image/{productId}','ProductController@ins_p_img')->name('product.newImage');
     Route::put('product/image/update/{imageId}','ProductController@updateImage')->name('product.image.update');
     Route::delete('product/image/destroy/{imageId}','ProductController@destroyImage')->name('product.image.destroy');
 });

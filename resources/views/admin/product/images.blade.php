@@ -2,7 +2,10 @@
 @section('title','Product Images')
 @section('content')
     <!-- Page-Title -->
+
+
     <div class="row">
+
         <div class="col-sm-12">
             <div class="page-header-title">
                 <h4 class="pull-left page-title">Product Images</h4>
@@ -13,6 +16,9 @@
                 <div class="clearfix"></div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <a href="{{route('product.newImage',$product_id)}}">Add New</a>
     </div>
     <div class="row">
         <div class="col-md-12">
