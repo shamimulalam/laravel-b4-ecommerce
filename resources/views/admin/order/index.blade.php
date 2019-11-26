@@ -22,7 +22,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <h3 class="panel-title">Order list</h3>
                         </div>
                         <div class="col-md-8">
@@ -37,6 +37,9 @@
                                 </div>
                             </form>
 
+                        </div>
+                        <div class="col-md-1">
+                            <a href="{{ route('order.export') }}" class="btn btn-default">Export</a>
                         </div>
                     </div>
                 </div>
