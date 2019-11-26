@@ -29,27 +29,34 @@
                                     <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Role</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Image</th>
-                                        <th>Actions</th>
+                                        @can('admin',auth()->user())
+                                            <th>Actions</th>
+                                        @endcan
                                     </tr>
                                     </thead>
                                     <tbody>
                                         @foreach($users as $id=>$user)
                                             <tr>
                                                 <td>{{ ++$id }}</td>
+                                                <td>{{ ucfirst($user->role) }}</td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td><img src="{{ asset($user->image) }}" width="20%" alt=""></td>
-                                                <td>
-                                                    <a class="btn btn-info" href="{{ route('user.edit',$user->id) }}">Edit</a>
-                                                    <form class="d-inline-block" method="post" action="{{ route('user.destroy',$user->id) }}">
-                                                        @csrf
-                                                        @method('delete')
-                                                        <button class="btn btn-danger" onclick="return confirm('Are you confirm to delete?')">Delete</button>
-                                                    </form>
-                                                </td>
+
+                                                @can('admin',auth()->user())
+                                                    <td>
+                                                        <a class="btn btn-info" href="{{ route('user.edit',$user->id) }}">Edit</a>
+                                                        <form class="d-inline-block" method="post" action="{{ route('user.destroy',$user->id) }}">
+                                                            @csrf
+                                                            @method('delete')
+                                                            <button class="btn btn-danger" onclick="return confirm('Are you confirm to delete?')">Delete</button>
+                                                        </form>
+                                                    </td>
+                                                @endcan
                                             </tr>
                                         @endforeach
                                     </tbody>

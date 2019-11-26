@@ -16,6 +16,7 @@
     </div>
 
     <div class="row">
+        @include('layouts.admin._message')
         <div class="col-sm-6 col-lg-3">
             <div class="panel panel-primary text-center">
                 <div class="panel-heading">
