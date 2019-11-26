@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    public $k=10;
     use Notifiable;
 
     const ROLE_ADMIN = 'admin';
