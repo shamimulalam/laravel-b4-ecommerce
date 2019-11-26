@@ -32,4 +32,22 @@ class OrderController extends Controller
     {
         return Excel::download(new OrdersExport,'orders.xlsx');
     }
+    public function delivered($order_id)
+    {
+        $order = Order::findOrFail($order_id);
+        $order->status = Order::STATUS_DELIVERED;
+        $order->save();
+        session()->flash('message','Order has been delivered successfully');
+        return redirect()->back();
+
+    }
+    public function declined($order_id)
+    {
+        $order = Order::findOrFail($order_id);
+        $order->status = Order::STATUS_DECLINED;
+        $order->save();
+        session()->flash('message','Order has been declined');
+        return redirect()->back();
+
+    }
 }

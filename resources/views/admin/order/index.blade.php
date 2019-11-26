@@ -85,7 +85,16 @@
                                                 <td>{{ $order->created_at }}</td>
                                                 <td>{{ $order->status }}</td>
                                                 <td>
-{{--                                                    <a class="btn btn-info" href="{{ route('order.edit',$order->id) }}">Edit</a>--}}
+                                                    <form action="{{ route('order.declined',$order->id) }}" method="post">
+                                                        @csrf
+                                                        @method('put')
+                                                        <button class="btn btn-info">Declined</button>
+                                                    </form>
+                                                    <form action="{{ route('order.delivered',$order->id) }}" method="post">
+                                                        @csrf
+                                                        @method('put')
+                                                        <button class="btn btn-warning">Delivered</button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -26,6 +26,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'auth'],funct
     Route::delete('product/image/destroy/{imageId}','ProductController@destroyImage')->name('product.image.destroy');
     Route::get('orders','OrderController@index')->name('order.index');
     Route::get('orders/export','OrderController@export')->name('order.export');
+    Route::put('orders/declined/{order_id}','OrderController@declined')->name('order.declined');
+    Route::put('orders/delivered/{order_id}','OrderController@delivered')->name('order.delivered');
 
 });
 
